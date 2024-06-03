@@ -8,7 +8,7 @@ export async function POST(req) {
 
     await prisma.subscriptions.create({
         data: {
-            data: JSON.stringify(subscription),
+            data: JSON.stringify(data),
         },
     });
 
