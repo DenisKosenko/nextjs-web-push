@@ -13,16 +13,10 @@ export const sendNotification = ({ title, text, pushSubscription, actionType }) 
         pushSubscription,
         JSON.stringify({
             title: title,
-            options: {
-                body: text,
-                actions: [
-                    {
-                        action: actionType,
-                    },
-                ],
-                data: {
-                    url: `/notification?type=${actionType}`, // Adjust the URL and query parameter as needed
-                },
+            body: text,
+            data: {
+                url: `/notification?type=${actionType}`, // Adjust the URL and query parameter as needed
+                action: actionType,
             },
         })
     );
