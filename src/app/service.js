@@ -1,6 +1,5 @@
 'use server';
 const webpush = require('web-push');
-import { PrismaClient } from '@prisma/client';
 
 webpush.setVapidDetails(
     'mailto:mail@mail.com',
@@ -15,7 +14,6 @@ export const sendNotification = ({ title, text, pushSubscription, actionType }) 
             title: title,
             body: text,
             data: {
-                url: `/notification?type=${actionType}`, // Adjust the URL and query parameter as needed
                 action: actionType,
             },
         })

@@ -14,6 +14,8 @@ export default function Home() {
     const [actionType, setActionType] = useState(false);
     const consumerSubscriptions = subscriptions.filter((x) => x.consumerId === consumerId);
     const [selectedSubscriptions] = consumerSubscriptions.filter((x) => x.subscriptionId === +subscriptionId);
+    const uniqueConsumerIds = [...new Set(subscriptions.map((x) => x.consumerId))];
+    const uniqueSubscriptions = uniqueConsumerIds.map((id) => subscriptions.find((x) => x.consumerId === id));
 
     async function fetchData() {
         const response = await fetch('/api/subscriptionInfo');
@@ -33,12 +35,18 @@ export default function Home() {
 
     const onSubmit = async () => {
         setIsLoading(true);
-        await sendNotification({ title, text, actionType, pushSubscription: selectedSubscriptions.subscription });
+
+        try {
+            await sendNotification({ title, text, actionType, pushSubscription: selectedSubscriptions.subscription });
+        } catch (error) {
+            log.error(error);
+        }
+
         setIsLoading(false);
     };
 
     return (
-        <main className="flex w-full items-top justify-center p-24">
+        <main className="flex w-full items-top justify-center max-w-md mx-auto p-8 text-[#0f172a]">
             <Form
                 title={title}
                 text={text}
@@ -46,7 +54,7 @@ export default function Home() {
                 onTitleChange={setTitle}
                 onTextChange={setText}
                 isLoading={isLoading}
-                consumerSubscriptions={subscriptions || {}}
+                consumerSubscriptions={uniqueSubscriptions || {}}
                 selectedSubscriptions={consumerSubscriptions || {}}
                 onConsumerSelect={setConsumerId}
                 onSubscriptionSelect={setSubscriptionId}

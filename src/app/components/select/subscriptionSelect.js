@@ -3,7 +3,7 @@ import Select from './select';
 
 const SubscriptionSelect = ({ subscriptions, onSelect }) => {
     return (
-        <Select placeholder="Select Subscription Id" onSelect={onSelect}>
+        <Select placeholder="Select Subscription Id" label="Subscription Id" id="subscription" onSelect={onSelect}>
             {subscriptions.map((x, index) => {
                 if (!x) return null;
 

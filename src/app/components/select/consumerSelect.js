@@ -1,9 +1,9 @@
 import React from 'react';
 import Select from './select';
 
-const ConsumerSelect = ({ subscriptions, onSelect }) => {
+const ConsumerSelect = ({ subscriptions, ...rest }) => {
     return (
-        <Select placeholder="Select Consumer Id" onSelect={onSelect}>
+        <Select placeholder="Select Consumer Id" label="Consumer Id" {...rest}>
             {subscriptions.map((x, index) => {
                 if (!x) return null;
 
