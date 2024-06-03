@@ -12,6 +12,8 @@ export default function Form({
     subscriptions,
     onConsumerSelect,
     onSubscriptionSelect,
+    consumerSubscriptions,
+    selectedSubscriptions,
 }) {
     return (
         <form
@@ -74,8 +76,8 @@ export default function Form({
                 </label>
             </div>
             <div className="mb-6">
-                <ConsumerSelect subscriptions={subscriptions} onSelect={onConsumerSelect} />
-                <SubscriptionSelect subscriptions={subscriptions} onSelect={onSubscriptionSelect} />
+                <ConsumerSelect subscriptions={consumerSubscriptions} onSelect={onConsumerSelect} />
+                <SubscriptionSelect subscriptions={selectedSubscriptions} onSelect={onSubscriptionSelect} />
             </div>
         </form>
     );

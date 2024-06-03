@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Form from './components/form';
-import { sendNotifications } from './service';
+import { sendNotification } from './service';
 
 export default function Home() {
     const [subscriptions, setSubscriptions] = useState([]);
@@ -11,27 +11,28 @@ export default function Home() {
     const [consumerId, setConsumerId] = useState(null);
     const [subscriptionId, setSubscriptionId] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const consumerSubscriptions = subscriptions.filter((x) => x.consumerId === consumerId);
+    const selectedSubscriptions = consumerSubscriptions.filter((x) => x.subscriptionId === subscriptionId);
+    console.log({ consumerSubscriptions, selectedSubscriptions });
+    async function fetchData() {
+        const response = await fetch('/api/subscriptionInfo');
+        const data = await response.json();
 
-    console.log(subscriptions, consumerId, subscriptionId);
+        const mappedData = data.subscriptions.map((x) => ({
+            ...JSON.parse(x.data),
+            createdAt: x.createdAt.toString(),
+        }));
+        console.log(mappedData);
+        setSubscriptions(mappedData);
+    }
 
     useEffect(() => {
-        async function fetchData() {
-            const response = await fetch('/api/subscriptionInfo');
-            const data = await response.json();
-            console.log(data);
-            // const mappedData = data.map((subscription) => ({
-            //     data: JSON.parse(subscription.data),
-            //     createdAt: subscription.createdAt.toString(),
-            // }));
-            // setSubscriptions(mappedData);
-        }
-
         fetchData();
     }, []);
 
     const onSubmit = async () => {
         setIsLoading(true);
-        await sendNotifications({ title, text });
+        await sendNotification({ title, text, pushSubscription: selectedSubscriptions.subscription });
         setIsLoading(false);
     };
 
@@ -44,7 +45,8 @@ export default function Home() {
                 onTitleChange={setTitle}
                 onTextChange={setText}
                 isLoading={isLoading}
-                subscriptions={subscriptions || {}}
+                consumerSubscriptions={subscriptions || {}}
+                selectedSubscriptions={subscriptions || {}}
                 onConsumerSelect={setConsumerId}
                 onSubscriptionSelect={setSubscriptionId}
             />
