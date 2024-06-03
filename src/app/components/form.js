@@ -1,6 +1,7 @@
 import ConsumerSelect from './select/consumerSelect';
 import Loader from './loader';
 import SubscriptionSelect from './select/subscriptionSelect';
+import ActionSelect from './select/actionSelect';
 
 export default function Form({
     title,
@@ -14,6 +15,7 @@ export default function Form({
     onSubscriptionSelect,
     consumerSubscriptions,
     selectedSubscriptions,
+    setActionType,
 }) {
     return (
         <form
@@ -51,34 +53,34 @@ export default function Form({
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                 />
             </div>
+            <div className="mb-6">
+                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900">
+                    Consumer Id
+                </label>
+                <ConsumerSelect subscriptions={consumerSubscriptions} onSelect={onConsumerSelect} />
+            </div>
+            <div className="mb-6">
+                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900">
+                    Subscription Id
+                </label>
+                <SubscriptionSelect subscriptions={selectedSubscriptions} onSelect={onSubscriptionSelect} />
+            </div>
+            <div className="mb-6">
+                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900">
+                    Action Type
+                </label>
+                <ActionSelect onSelect={setActionType} />
+            </div>
             <button
                 disabled={isLoading}
                 type="submit"
-                className={`mb-6 flex items-center gap-3 text-white bg-blue-700 ${
+                className={`mb-6 flex items-center justify-center gap-3 text-white bg-blue-700 ${
                     !isLoading ? 'hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300' : ''
-                } font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center`}
+                } font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center`}
             >
                 {isLoading && <Loader />}
                 Send push notification
             </button>
-            <div className="flex items-start mb-6">
-                <div className="flex items-center h-5">
-                    <input
-                        id="clear"
-                        type="checkbox"
-                        // value={shouldClearInputFields}
-                        // onChange={(e) => onShouldClearInputFieldsChange(e.target.checked)}
-                        className="w-4 h-4 border cursor-pointer border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
-                    />
-                </div>
-                <label htmlFor="clear" className="ms-2 cursor-pointer text-sm  text-gray-900">
-                    Clear input fields after sending
-                </label>
-            </div>
-            <div className="mb-6">
-                <ConsumerSelect subscriptions={consumerSubscriptions} onSelect={onConsumerSelect} />
-                <SubscriptionSelect subscriptions={selectedSubscriptions} onSelect={onSubscriptionSelect} />
-            </div>
         </form>
     );
 }

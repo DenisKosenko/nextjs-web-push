@@ -8,7 +8,7 @@ webpush.setVapidDetails(
     'ujiAttQyHkDA-LuRL1iZG0RnoX3uNexRoKk_b9aznSs'
 );
 
-export const sendNotification = ({ title, text, pushSubscription }) => {
+export const sendNotification = ({ title, text, pushSubscription, actionType }) => {
     return webpush.sendNotification(
         pushSubscription,
         JSON.stringify({
@@ -17,9 +17,7 @@ export const sendNotification = ({ title, text, pushSubscription }) => {
                 body: text,
                 actions: [
                     {
-                        action: '/coffee-action',
-                        type: 'button',
-                        title: 'Coffee',
+                        action: actionType,
                     },
                 ],
             },

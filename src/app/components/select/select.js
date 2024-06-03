@@ -11,7 +11,7 @@ const Select = ({ placeholder, onSelect, children }) => {
         <select
             defaultValue=""
             onChange={onChange}
-            className="py-2 px-4 rounded-md outline-none appearance-none cursor-pointer hover:bg-gray-300 transition-all"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
         >
             <option value="">{placeholder}</option>
             {children}

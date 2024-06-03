@@ -11,9 +11,10 @@ export default function Home() {
     const [consumerId, setConsumerId] = useState(null);
     const [subscriptionId, setSubscriptionId] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [actionType, setActionType] = useState(false);
     const consumerSubscriptions = subscriptions.filter((x) => x.consumerId === consumerId);
-    const selectedSubscriptions = consumerSubscriptions.filter((x) => x.subscriptionId === subscriptionId);
-    console.log({ consumerSubscriptions, selectedSubscriptions });
+    const [selectedSubscriptions] = consumerSubscriptions.filter((x) => x.subscriptionId === +subscriptionId);
+
     async function fetchData() {
         const response = await fetch('/api/subscriptionInfo');
         const data = await response.json();
@@ -32,7 +33,7 @@ export default function Home() {
 
     const onSubmit = async () => {
         setIsLoading(true);
-        await sendNotification({ title, text, pushSubscription: selectedSubscriptions.subscription });
+        await sendNotification({ title, text, actionType, pushSubscription: selectedSubscriptions.subscription });
         setIsLoading(false);
     };
 
@@ -46,9 +47,10 @@ export default function Home() {
                 onTextChange={setText}
                 isLoading={isLoading}
                 consumerSubscriptions={subscriptions || {}}
-                selectedSubscriptions={subscriptions || {}}
+                selectedSubscriptions={consumerSubscriptions || {}}
                 onConsumerSelect={setConsumerId}
                 onSubscriptionSelect={setSubscriptionId}
+                setActionType={setActionType}
             />
         </main>
     );

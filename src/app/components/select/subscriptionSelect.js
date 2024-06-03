@@ -9,7 +9,7 @@ const SubscriptionSelect = ({ subscriptions, onSelect }) => {
 
                 return (
                     <option key={index} value={x.subscriptionId}>
-                        {x.consumerId}
+                        {x.subscriptionId}
                     </option>
                 );
             })}
