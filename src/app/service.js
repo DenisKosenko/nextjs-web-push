@@ -12,7 +12,7 @@ webpush.setVapidDetails(
 
 export const sendNotifications = async ({ title, text }) => {
     const subscriptions = await prisma.subscriptions.findMany();
-    console.log(subscriptions);
+
     for await (const { data } of subscriptions) {
         await sendNotification({ title, text, pushSubscription: JSON.parse(data) });
     }
@@ -27,15 +27,12 @@ const sendNotification = ({ title, text, pushSubscription }) => {
             title: title,
             options: {
                 body: text,
-                // icon: "https://upload.wikimedia.org/wikipedia/commons/3/3f/JPEG_example_flower.jpg",
-                // image:
-                //   "https://ch.iqos.com/sites/g/files/hncfsx821/files/2021-09/IQOS_ILUMA_Science1_ContentBlock_Benefits_ImageCollage_Variant4_Grid1_Image2_Global_Desktop_Standard.jpg",
                 actions: [
                     {
                         action: '/coffee-action',
                         type: 'button',
                         title: 'Coffee',
-                        // icon: "https://upload.wikimedia.org/wikipedia/commons/3/3f/JPEG_example_flower.jpg",
+                        icon: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/JPEG_example_flower.jpg',
                     },
                 ],
             },
