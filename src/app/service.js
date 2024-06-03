@@ -20,6 +20,9 @@ export const sendNotification = ({ title, text, pushSubscription, actionType }) 
                         action: actionType,
                     },
                 ],
+                data: {
+                    url: `/notification?type=${actionType}`, // Adjust the URL and query parameter as needed
+                },
             },
         })
     );
