@@ -15,7 +15,7 @@ const ClearButton = () => {
     return (
         <Button
             isLoading={isLoading}
-            className={`bg-[#ff5555] ${!isLoading ? 'hover:bg-[#f84444] focus:ring-[#f9aaaa]' : ''}`}
+            className={`!bg-[#ff5555] ${!isLoading ? '!hover:bg-[#f84444] focus:!ring-[#f9aaaa]' : ''}`}
             onClick={onClick}
         >
             Clear data
