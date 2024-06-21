@@ -4,6 +4,7 @@ import Select from './select';
 const actionTypes = [
     'pause-mode',
     'flex-puff',
+    'flex-battery',
     'personalized-charging',
     'software-update',
     'low-performance-support',
