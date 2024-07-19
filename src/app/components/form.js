@@ -8,9 +8,11 @@ import ClearButton from './button/clearButton';
 export default function Form({
     title,
     text,
+    dusn,
     onSubmit,
     onTitleChange,
     onTextChange,
+    onDusnChange,
     isLoading,
     onConsumerSelect,
     onSubscriptionSelect,
@@ -46,6 +48,7 @@ export default function Form({
             <ConsumerSelect subscriptions={consumerSubscriptions} onSelect={onConsumerSelect} />
             <SubscriptionSelect subscriptions={selectedSubscriptions} onSelect={onSubscriptionSelect} />
             <ActionSelect onSelect={setActionType} />
+            <Input value={dusn} onChange={onDusnChange} label="Dusn" placeholder="Enter dusn..." id="dusn" />
             <SubmitButton isLoading={isLoading} />
             <ClearButton />
         </form>

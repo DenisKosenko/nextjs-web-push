@@ -8,6 +8,7 @@ export default function Home() {
     const [subscriptions, setSubscriptions] = useState([]);
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
+    const [dusn, setDusn] = useState('');
     const [consumerId, setConsumerId] = useState(null);
     const [subscriptionId, setSubscriptionId] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +38,13 @@ export default function Home() {
         setIsLoading(true);
 
         try {
-            await sendNotification({ title, text, actionType, pushSubscription: selectedSubscriptions.subscription });
+            await sendNotification({
+                title,
+                text,
+                actionType,
+                dusn,
+                pushSubscription: selectedSubscriptions.subscription,
+            });
         } catch (error) {
             log.error(error);
         }
@@ -50,9 +57,11 @@ export default function Home() {
             <Form
                 title={title}
                 text={text}
+                dusn={dusn}
                 onSubmit={onSubmit}
                 onTitleChange={setTitle}
                 onTextChange={setText}
+                onDusnChange={setDusn}
                 isLoading={isLoading}
                 consumerSubscriptions={uniqueSubscriptions || {}}
                 selectedSubscriptions={consumerSubscriptions || {}}
