@@ -3,12 +3,14 @@
 import { useEffect, useState } from 'react';
 import Form from './components/form';
 import { sendNotification } from './service';
+import useSetDefaultText from './hooks/useSetDefaultText';
 
 export default function Home() {
     const [subscriptions, setSubscriptions] = useState([]);
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [dusn, setDusn] = useState('');
+    const [iconUrl, setIconUrl] = useState('');
     const [consumerId, setConsumerId] = useState(null);
     const [subscriptionId, setSubscriptionId] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -34,6 +36,8 @@ export default function Home() {
         fetchData();
     }, []);
 
+    useSetDefaultText(actionType, setTitle, setText);
+
     const onSubmit = async () => {
         setIsLoading(true);
 
@@ -41,12 +45,13 @@ export default function Home() {
             await sendNotification({
                 title,
                 text,
+                iconUrl,
                 actionType,
                 dusn,
                 pushSubscription: selectedSubscriptions.subscription,
             });
         } catch (error) {
-            log.error(error);
+            console.error(error);
         }
 
         setIsLoading(false);
@@ -55,9 +60,13 @@ export default function Home() {
     return (
         <main className="flex w-full items-top justify-center max-w-md mx-auto p-8 text-[#0f172a]">
             <Form
+                consumerId={consumerId}
+                subscriptionId={subscriptionId}
                 title={title}
                 text={text}
                 dusn={dusn}
+                iconUrl={iconUrl}
+                setIconUrl={setIconUrl}
                 onSubmit={onSubmit}
                 onTitleChange={setTitle}
                 onTextChange={setText}

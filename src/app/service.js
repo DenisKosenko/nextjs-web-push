@@ -7,12 +7,13 @@ webpush.setVapidDetails(
     'ujiAttQyHkDA-LuRL1iZG0RnoX3uNexRoKk_b9aznSs'
 );
 
-export const sendNotification = ({ title, text, pushSubscription, actionType, dusn }) => {
+export const sendNotification = ({ title, text, pushSubscription, actionType, iconUrl, dusn }) => {
     return webpush.sendNotification(
         pushSubscription,
         JSON.stringify({
             title: title,
             body: text,
+            icon: iconUrl,
             data: {
                 action: actionType,
                 dusn,

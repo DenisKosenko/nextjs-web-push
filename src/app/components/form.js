@@ -4,11 +4,19 @@ import ActionSelect from './select/actionSelect';
 import Input from './input/input';
 import SubmitButton from './button/submitButton';
 import ClearButton from './button/clearButton';
+import TitleInput from './input/titleInput';
+import BodyInput from './input/bodyInput';
+import DusnInput from './input/dusnInput';
+import IconInput from './input/iconInput';
 
 export default function Form({
+    consumerId,
+    subscriptionId,
     title,
     text,
     dusn,
+    iconUrl,
+    setIconUrl,
     onSubmit,
     onTitleChange,
     onTextChange,
@@ -31,25 +39,18 @@ export default function Form({
             }}
         >
             <h1 className="text-3xl mb-6 font-bold text-center">Web Push</h1>
-            <Input
-                value={title}
-                onChange={onTitleChange}
-                label="Notification Title"
-                placeholder="Enter title..."
-                id="title"
-            />
-            <Input
-                value={text}
-                onChange={onTextChange}
-                label="Notification Body"
-                placeholder="Enter body..."
-                id="text"
-            />
             <ConsumerSelect subscriptions={consumerSubscriptions} onSelect={onConsumerSelect} />
-            <SubscriptionSelect subscriptions={selectedSubscriptions} onSelect={onSubscriptionSelect} />
-            <ActionSelect onSelect={setActionType} />
-            <Input value={dusn} onChange={onDusnChange} label="Dusn" placeholder="Enter dusn..." id="dusn" />
-            <SubmitButton isLoading={isLoading} />
+            {consumerId && <SubscriptionSelect subscriptions={selectedSubscriptions} onSelect={onSubscriptionSelect} />}
+            {consumerId && subscriptionId && (
+                <>
+                    <ActionSelect onSelect={setActionType} />
+                    <TitleInput value={title} onChange={onTitleChange} />
+                    <BodyInput value={text} onChange={onTextChange} />
+                    <IconInput value={iconUrl} onChange={setIconUrl} />
+                    <DusnInput value={dusn} onChange={onDusnChange} />
+                    <SubmitButton isLoading={isLoading} />
+                </>
+            )}
             <ClearButton />
         </form>
     );
