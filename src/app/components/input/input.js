@@ -1,12 +1,13 @@
 import React from 'react';
 
-const Input = ({ placeholder, onChange, label, value, id }) => {
+const Input = ({ placeholder, onChange, label, value, id, required }) => {
     return (
         <div>
             <label htmlFor={id} className="block text-sm font-medium leading-6 ">
                 {label}
             </label>
             <input
+                required={required}
                 placeholder={placeholder}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}

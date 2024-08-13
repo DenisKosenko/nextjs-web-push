@@ -76,6 +76,7 @@ export default function Home() {
                 selectedSubscriptions={consumerSubscriptions || {}}
                 onConsumerSelect={setConsumerId}
                 onSubscriptionSelect={setSubscriptionId}
+                actionType={actionType}
                 setActionType={setActionType}
             />
         </main>

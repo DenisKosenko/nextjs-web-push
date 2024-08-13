@@ -26,6 +26,7 @@ export default function Form({
     onSubscriptionSelect,
     consumerSubscriptions,
     selectedSubscriptions,
+    actionType,
     setActionType,
 }) {
     return (
@@ -47,7 +48,7 @@ export default function Form({
                     <TitleInput value={title} onChange={onTitleChange} />
                     <BodyInput value={text} onChange={onTextChange} />
                     <IconInput value={iconUrl} onChange={setIconUrl} />
-                    <DusnInput value={dusn} onChange={onDusnChange} />
+                    <DusnInput value={dusn} onChange={onDusnChange} actionType={actionType} />
                     <SubmitButton isLoading={isLoading} />
                 </>
             )}
