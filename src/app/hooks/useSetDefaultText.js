@@ -1,5 +1,12 @@
 import React, { useEffect } from 'react';
-import { LOW_PERFORMANCE_SUPPORT, LOYALTY, PERSONALIZED_CHARGING, SOFTWARE_UPDATE } from '../const/actionTypes';
+import {
+    FLEX_PUFF,
+    LOW_PERFORMANCE_SUPPORT,
+    LOYALTY,
+    PAUSE_MODE,
+    PERSONALIZED_CHARGING,
+    SOFTWARE_UPDATE,
+} from '../const/actionTypes';
 
 const useSetDefaultText = (actionType, setTitle, setText) => {
     useEffect(() => {
@@ -14,7 +21,7 @@ const useSetDefaultText = (actionType, setTitle, setText) => {
                 break;
             case LOW_PERFORMANCE_SUPPORT:
                 title = 'Low Battery Performance';
-                body = 'Run diagnostic to detect and solve issues';
+                body = 'Run a diagnostic test to detect and solve battery issues. Tap to start.';
                 break;
             case LOYALTY:
                 title = 'You’ve earned 50 points';
@@ -23,6 +30,14 @@ const useSetDefaultText = (actionType, setTitle, setText) => {
             case PERSONALIZED_CHARGING:
                 title = 'Your IQOS insight report is ready!';
                 body = 'Learn more about your IQOS usage habits';
+                break;
+            case PAUSE_MODE:
+                title = 'Optimise with Pause Mode';
+                body = 'Pause your experience for up to 8 minutes and resume it.';
+                break;
+            case FLEX_PUFF:
+                title = 'Optimise with FlexPuff';
+                body = 'Extend your experience by up to 4 puffs.';
                 break;
             default:
                 break;
