@@ -6,19 +6,11 @@ import {
     LOW_PERFORMANCE_SUPPORT,
     LOYALTY,
     PAUSE_MODE,
-    PERSONALIZED_CHARGING,
+    USAGE,
     SOFTWARE_UPDATE,
 } from '../../const/actionTypes';
 
-const actionTypes = [
-    PAUSE_MODE,
-    FLEX_PUFF,
-    FLEX_BATTERY,
-    PERSONALIZED_CHARGING,
-    SOFTWARE_UPDATE,
-    LOW_PERFORMANCE_SUPPORT,
-    LOYALTY,
-];
+const actionTypes = [PAUSE_MODE, FLEX_PUFF, FLEX_BATTERY, USAGE, SOFTWARE_UPDATE, LOW_PERFORMANCE_SUPPORT, LOYALTY];
 
 const ActionSelect = (props) => {
     return (

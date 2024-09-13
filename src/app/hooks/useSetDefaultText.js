@@ -1,12 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-    FLEX_PUFF,
-    LOW_PERFORMANCE_SUPPORT,
-    LOYALTY,
-    PAUSE_MODE,
-    PERSONALIZED_CHARGING,
-    SOFTWARE_UPDATE,
-} from '../const/actionTypes';
+import { FLEX_PUFF, LOW_PERFORMANCE_SUPPORT, LOYALTY, PAUSE_MODE, USAGE, SOFTWARE_UPDATE } from '../const/actionTypes';
 
 const useSetDefaultText = (actionType, setTitle, setText) => {
     useEffect(() => {
@@ -27,7 +20,7 @@ const useSetDefaultText = (actionType, setTitle, setText) => {
                 title = 'You’ve earned 50 points';
                 body = 'Great start! Earn more rewards in IQOS CLUB. Find out more';
                 break;
-            case PERSONALIZED_CHARGING:
+            case USAGE:
                 title = 'Your IQOS insight report is ready!';
                 body = 'Learn more about your IQOS usage habits';
                 break;

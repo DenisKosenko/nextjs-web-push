@@ -2,21 +2,14 @@ import React from 'react';
 import Input from './input';
 import {
     LOW_PERFORMANCE_SUPPORT,
-    PERSONALIZED_CHARGING,
+    USAGE,
     SOFTWARE_UPDATE,
     PAUSE_MODE,
     FLEX_PUFF,
     FLEX_BATTERY,
 } from '../../const/actionTypes';
 
-const dusnRequiredActions = [
-    LOW_PERFORMANCE_SUPPORT,
-    PERSONALIZED_CHARGING,
-    SOFTWARE_UPDATE,
-    PAUSE_MODE,
-    FLEX_PUFF,
-    FLEX_BATTERY,
-];
+const dusnRequiredActions = [LOW_PERFORMANCE_SUPPORT, USAGE, SOFTWARE_UPDATE, PAUSE_MODE, FLEX_PUFF, FLEX_BATTERY];
 
 const DusnInput = ({ value, onChange, actionType }) => {
     return (
