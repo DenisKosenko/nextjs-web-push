@@ -32,6 +32,10 @@ const useSetDefaultText = (actionType, setTitle, setText) => {
                 title = 'Optimise with FlexPuff';
                 body = 'Extend your experience by up to 4 puffs.';
                 break;
+            case FLEX_BATTERY:
+                title = 'Recharge your IQOS';
+                body = 'Your battery is underperforming. Learn how to optimize it.';
+                break;
             default:
                 break;
         }
