@@ -1,5 +1,13 @@
 import React, { useEffect } from 'react';
-import { FLEX_PUFF, LOW_PERFORMANCE_SUPPORT, LOYALTY, PAUSE_MODE, USAGE, SOFTWARE_UPDATE } from '../const/actionTypes';
+import {
+    FLEX_PUFF,
+    FLEX_BATTERY,
+    LOW_PERFORMANCE_SUPPORT,
+    LOYALTY,
+    PAUSE_MODE,
+    USAGE,
+    SOFTWARE_UPDATE,
+} from '../const/actionTypes';
 
 const useSetDefaultText = (actionType, setTitle, setText) => {
     useEffect(() => {
