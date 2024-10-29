@@ -23,6 +23,10 @@ const nextConfig = {
                         value: 'https://cit-mercury-web.iinc-qa.aws.pmicloud.biz',
                     },
                     {
+                        key: 'Access-Control-Allow-Origin',
+                        value: 'https://preprod.cit-mercury-web.iinc-qa.aws.pmicloud.biz',
+                    },
+                    {
                         key: 'Access-Control-Allow-Methods',
                         value: 'GET,DELETE,PATCH,POST,PUT,OPTIONS',
                     },
